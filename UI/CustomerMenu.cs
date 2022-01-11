@@ -109,6 +109,7 @@ public class CustomerMenu : IMenu
 
     private void PlaceOrder(int userId)
     {
+        addProduct:
         List<Store> allStores = _bl.GetAllStores();
         Console.WriteLine("Select a store to place orders for");
         Console.WriteLine("==================================");
@@ -141,7 +142,16 @@ public class CustomerMenu : IMenu
                 {
                     _bl.AddOrder(allStores[selection].Id, allProducts[selection2].Id, allStores[selection].Name, allProducts[selection2].Title, quantity, allProducts[selection2].Price, userId);
                     _bl.UpdateInventory(allProducts[selection2].Id, allProducts[selection2].Inventory-quantity);
-                    Console.WriteLine("Your order has been received!");
+                    Console.WriteLine("Would you like to purchase more games? [y/n]:");
+                    string? yn = Console.ReadLine();
+                    if(yn == "y")
+                    {
+                        goto addProduct;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Your order has been received!");
+                    }
                 }
                 catch(InputInvalidException ex)
                 {
