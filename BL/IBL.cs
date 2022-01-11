@@ -37,6 +37,4 @@ public interface IBL
     void ReplenishInventory();
 
     Customer Login(Customer existingCustomer);
-
-    
 }
