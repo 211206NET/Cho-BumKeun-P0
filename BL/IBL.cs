@@ -10,6 +10,14 @@ public interface IBL
 
     List<Order> GetAllOrders(int Id);
 
+    List<Order> GetAllOrdersDateON(int Id);
+
+    List<Order> GetAllOrdersDateNO(int Id);
+
+    List<Order> GetAllOrdersPriceLH(int Id);
+
+    List<Order> GetAllOrdersPriceHL(int Id);
+
     List<Order> StoreOrders(int storeId);
 
     void AddCustomer(Customer customerToAdd);

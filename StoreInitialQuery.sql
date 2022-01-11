@@ -59,16 +59,3 @@ Select * FROM UserAccount;
 Select * FROM Product;
 Select * FROM Store;
 Select * FROM Orders;
-
-INSERT INTO Review (RestaurantId, Rating, Note) VALUES (1,5, 'AMAZING ICE CREAM');
-
--- Deletes anything with 'Taco' in the name
-Delete FROM Restaurant WHERE Name LIKE '%Taco%';
--- Deletes based on Id
-Delete FROM UserAccount WHERE Id = 2;
-
-Update Product
-SET Inventory = '100'-Quantity
-WHERE Id = 'Halo Infinite';
-
-SELECT * FROM Restaurant WHERE Name LIKE '' OR City LIKE '' OR State LIKE '';

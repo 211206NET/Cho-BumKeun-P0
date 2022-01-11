@@ -29,6 +29,26 @@ public class StoreBL : IBL
         return _dl.GetAllOrders(Id);
     }
 
+    public List<Order> GetAllOrdersDateON(int Id)
+    {
+        return _dl.GetAllOrdersDateON(Id);
+    }
+
+    public List<Order> GetAllOrdersDateNO(int Id)
+    {
+        return _dl.GetAllOrdersDateNO(Id);
+    }
+
+    public List<Order> GetAllOrdersPriceLH(int Id)
+    {
+        return _dl.GetAllOrdersPriceLH(Id);
+    }
+
+    public List<Order> GetAllOrdersPriceHL(int Id)
+    {
+        return _dl.GetAllOrdersPriceHL(Id);
+    }
+    
     public List<Order> StoreOrders(int Id)
     {
         return _dl.StoreOrders(Id);

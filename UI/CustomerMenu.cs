@@ -42,8 +42,8 @@ public class CustomerMenu : IMenu
             Console.WriteLine("[1] View store locations");
             Console.WriteLine("[2] View all products");
             Console.WriteLine("[3] Place order");
-            Console.WriteLine("[4] View your order history");
-            Console.WriteLine("[6] View your order history");
+            Console.WriteLine("[4] View your entire order history");
+            Console.WriteLine("[5] View your order history sorted");
             Console.WriteLine("[x] Logout to Main Menu");
 
             switch (Console.ReadLine())
@@ -60,8 +60,28 @@ public class CustomerMenu : IMenu
                 case "4":
                     ViewAllCustomerOrders(existing);
                 break;
-                case "6":
-                    //MenuFactory.GetMenu("order").Start();
+                case "5":
+                    Console.WriteLine("[[[[[[[[[[[[[[[[[ Order Menu ]]]]]]]]]]]]]]]]]");
+                    Console.WriteLine("[1] View your order by date (old to new)");
+                    Console.WriteLine("[2] View your order by date (new to old)");
+                    Console.WriteLine("[3] View your order by price (low to high)");
+                    Console.WriteLine("[4] View your order by price (high to low)");
+                    Console.WriteLine("[x] Back to User Menu");
+                    switch (Console.ReadLine())
+                    {
+                        case "1":
+                            ViewAllCustomerOrdersDON(existing);
+                        break;
+                        case "2":
+                            ViewAllCustomerOrdersDNO(existing);
+                        break;
+                        case "3":
+                            ViewAllCustomerOrdersPLH(existing);
+                        break;
+                        case "4":
+                            ViewAllCustomerOrdersPHL(existing);
+                        break;
+                    }
                 break;
                 case "x":
                     exit = true;
@@ -165,6 +185,78 @@ public class CustomerMenu : IMenu
     private void ViewAllCustomerOrders(Customer user)
     {
         List<Order> allOrders = _bl.GetAllOrders(user.Id);
+        if(allOrders.Count == 0)
+        {
+            Console.WriteLine("You have not made an order");
+        }
+        else
+        {
+            Console.WriteLine("Here are your order details");
+            Console.WriteLine("==================================");
+            foreach(Order ord in allOrders)
+            {
+                Console.WriteLine(ord.ToString());
+            }
+        }
+    }
+
+    private void ViewAllCustomerOrdersDON(Customer user)
+    {
+        List<Order> allOrders = _bl.GetAllOrdersDateON(user.Id);
+        if(allOrders.Count == 0)
+        {
+            Console.WriteLine("You have not made an order");
+        }
+        else
+        {
+            Console.WriteLine("Here are your order details");
+            Console.WriteLine("==================================");
+            foreach(Order ord in allOrders)
+            {
+                Console.WriteLine(ord.ToString());
+            }
+        }
+    }
+
+    private void ViewAllCustomerOrdersDNO(Customer user)
+    {
+        List<Order> allOrders = _bl.GetAllOrdersDateNO(user.Id);
+        if(allOrders.Count == 0)
+        {
+            Console.WriteLine("You have not made an order");
+        }
+        else
+        {
+            Console.WriteLine("Here are your order details");
+            Console.WriteLine("==================================");
+            foreach(Order ord in allOrders)
+            {
+                Console.WriteLine(ord.ToString());
+            }
+        }
+    }
+
+    private void ViewAllCustomerOrdersPLH(Customer user)
+    {
+        List<Order> allOrders = _bl.GetAllOrdersPriceLH(user.Id);
+        if(allOrders.Count == 0)
+        {
+            Console.WriteLine("You have not made an order");
+        }
+        else
+        {
+            Console.WriteLine("Here are your order details");
+            Console.WriteLine("==================================");
+            foreach(Order ord in allOrders)
+            {
+                Console.WriteLine(ord.ToString());
+            }
+        }
+    }
+
+    private void ViewAllCustomerOrdersPHL(Customer user)
+    {
+        List<Order> allOrders = _bl.GetAllOrdersPriceHL(user.Id);
         if(allOrders.Count == 0)
         {
             Console.WriteLine("You have not made an order");

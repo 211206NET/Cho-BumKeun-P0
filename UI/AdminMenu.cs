@@ -34,7 +34,8 @@ public class AdminMenu : IMenu
             Console.WriteLine("[1] View store locations");
             Console.WriteLine("[2] View all products");
             Console.WriteLine("[3] View storefront order history");
-            Console.WriteLine("[4] Replenish inventory");
+            Console.WriteLine("[4] View storefront order history sorted");
+            Console.WriteLine("[5] Replenish inventory");
             Console.WriteLine("[x] Logout to Main Menu");
 
             switch (Console.ReadLine())
@@ -62,6 +63,29 @@ public class AdminMenu : IMenu
                     }
                 break;
                 case "4":
+                    Console.WriteLine("[[[[[[[[[[[[[[[[[ Order Menu ]]]]]]]]]]]]]]]]]");
+                    Console.WriteLine("[1] View storefront order by date (old to new)");
+                    Console.WriteLine("[2] View storefront order by date (new to old)");
+                    Console.WriteLine("[3] View storefront order by price (low to high)");
+                    Console.WriteLine("[4] View storefront order by price (high to low)");
+                    Console.WriteLine("[x] Back to User Menu");
+                    switch (Console.ReadLine())
+                    {
+                        case "1":
+                            //ViewAllCustomerOrdersDON(existing);
+                        break;
+                        case "2":
+                            //ViewAllCustomerOrdersDNO(existing);
+                        break;
+                        case "3":
+                            //ViewAllCustomerOrdersPLH(existing);
+                        break;
+                        case "4":
+                            //ViewAllCustomerOrdersPHL(existing);
+                        break;
+                    }
+                break;
+                case "5":
                     _bl.ReplenishInventory();
                     Console.WriteLine("Inventory has been replenished");
                 break;
@@ -80,7 +104,7 @@ public class AdminMenu : IMenu
         List<Store> allStores = _bl.GetAllStores();
         if(allStores.Count == 0)
         {
-            Console.WriteLine("No stores found :/");
+            Console.WriteLine("No stores found");
         }
         else
         {
@@ -114,7 +138,7 @@ public class AdminMenu : IMenu
         List<Order> allOrders = _bl.StoreOrders(Id);
         if(allOrders.Count == 0)
         {
-            Console.WriteLine("You have not made an order");
+            Console.WriteLine("No order has been made for this storefront");
         }
         else
         {

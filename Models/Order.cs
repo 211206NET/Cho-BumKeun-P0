@@ -22,6 +22,7 @@ public class Order {
         this.Quantity = (int) row["Quantity"];
         this.TotalPrice = (decimal) row["TotalPrice"];
         this.UserId = (int) row["UserId"];
+        this.Time = row["Time"].ToString() ?? "";
     }
 
     public int Id { get; set; }
@@ -31,7 +32,8 @@ public class Order {
     public string ProductName { get; set; }
     public decimal TotalPrice { get; set; }
     public int UserId { get; set; }
-
+    public string Time { get; set; }
+ 
     private int _quantity;
     public int Quantity
     {
@@ -48,7 +50,7 @@ public class Order {
 
     public override string ToString()
     {
-        return $"Id: {this.Id} \nStore: {this.StoreName} \nProduct: {this.ProductName} \nQuantity: {this.Quantity} \nPrice: {this.TotalPrice} \n==================================";
+        return $"Id: {this.Id} \nStore: {this.StoreName} \nProduct: {this.ProductName} \nQuantity: {this.Quantity} \nPrice: {this.TotalPrice} \nTime: {this.Time} \n==================================";
     }
 
     public void ToDataRow(ref DataRow row)
@@ -57,5 +59,6 @@ public class Order {
         row["Product"] = this.ProductName;
         row["Quantity"] = this.Quantity;
         row["TotalPrice"] = this.TotalPrice;
+        row["Time"] = this.Time;
     }
 }
