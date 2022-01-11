@@ -8,6 +8,8 @@ public interface IRepo
 
     List<Order> GetAllOrders(int Id);
 
+    List<Order> StoreOrders(int Id);
+
     void AddCustomer(Customer customerToAdd);
 
     void AddOrder(int storeId, int productId, string storeName, string productName, int quantity, decimal price, int userId);

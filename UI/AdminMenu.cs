@@ -33,7 +33,8 @@ public class AdminMenu : IMenu
             Console.WriteLine("[[[[[[[[[[[[[[[[[ Admin Menu ]]]]]]]]]]]]]]]]]");
             Console.WriteLine("[1] View store locations");
             Console.WriteLine("[2] View all products");
-            Console.WriteLine("[3] Replenish inventory");
+            Console.WriteLine("[3] View storefront order history");
+            Console.WriteLine("[4] Replenish inventory");
             Console.WriteLine("[x] Logout to Main Menu");
 
             switch (Console.ReadLine())
@@ -45,6 +46,22 @@ public class AdminMenu : IMenu
                     ViewAllProducts();
                 break;
                 case "3":
+                    List<Store> allStores = _bl.GetAllStores();
+                    Console.WriteLine("Select a store to see orders for");
+                    Console.WriteLine("==================================");
+                    for(int i = 0; i < allStores.Count; i++)
+                    {
+                        Console.WriteLine($"[{i}] {allStores[i].ToString()}");
+                    }
+                    string? input = Console.ReadLine();
+                    int selection;
+                    bool parseSuccess = Int32.TryParse(input, out selection);
+                    if(parseSuccess && selection >= 0 && selection < allStores.Count)
+                    {
+                        ViewAllStorefrontOrders(selection + 1);
+                    }
+                break;
+                case "4":
                     _bl.ReplenishInventory();
                     Console.WriteLine("Inventory has been replenished");
                 break;
@@ -88,6 +105,24 @@ public class AdminMenu : IMenu
             foreach(Product prod in allProducts)
             {
                 Console.WriteLine(prod.ToString());
+            }
+        }
+    }
+
+    private void ViewAllStorefrontOrders(int Id)
+    {
+        List<Order> allOrders = _bl.StoreOrders(Id);
+        if(allOrders.Count == 0)
+        {
+            Console.WriteLine("You have not made an order");
+        }
+        else
+        {
+            Console.WriteLine("Here are the orders for the selected storefront");
+            Console.WriteLine("==================================");
+            foreach(Order ord in allOrders)
+            {
+                Console.WriteLine(ord.ToString());
             }
         }
     }

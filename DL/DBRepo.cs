@@ -241,38 +241,39 @@ public class DBRepo : IRepo
         using SqlConnection connection = new SqlConnection(_connectionString);
         string ordSelect = $"Select * From Orders WHERE UserId = {Id}";
         
-        //A single dataSet to hold all our data
         DataSet OrderSet = new DataSet();
 
-        //Two different adapters for different tables
         using SqlDataAdapter ordAdapter = new SqlDataAdapter(ordSelect, connection);
-        //using SqlDataAdapter reviewAdapter = new SqlDataAdapter(reviewSelect, connection);
-
         ordAdapter.Fill(OrderSet, "Order");
-        //reviewAdapter.Fill(StoreSet, "Review");
-
         DataTable? OrderTable = OrderSet.Tables["Order"];
-        //DataTable? ReviewTable = RRSet.Tables["Review"];
-
         if(OrderTable != null)
         {
             foreach(DataRow row in OrderTable.Rows)
             {
                 Order ord = new Order(row);
-                // sto.Id = (int) row["Id"];
-                // sto.StoreName = row["Name"].ToString() ?? "";
-                // sto.City = row["City"].ToString() ?? "";
-                // sto.State = row["State"].ToString() ?? "";
+                allOrders.Add(ord);
+            }
+        }
+        return allOrders;
+    }
 
-                // resto.Reviews = ReviewTable.AsEnumerable().Where(r => (int) r["RestaurantId"] == resto.Id).Select(
-                //     r =>
-                //         new Review {
-                //             Id = (int) r["Id"],
-                //             RestaurantId = (int) r["RestaurantId"],
-                //             Rating = (int) r["Rating"],
-                //             Note = r["NOTE"].ToString() ?? ""
-                //         }
-                // ).ToList();
+    public List<Order> StoreOrders(int storeId)
+    {
+        List<Order> allOrders = new List<Order>();
+
+        using SqlConnection connection = new SqlConnection(_connectionString);
+        string ordSelect = $"SELECT * FROM Orders WHERE StoreId = {storeId}";
+        
+        DataSet OrderSet = new DataSet();
+
+        using SqlDataAdapter ordAdapter = new SqlDataAdapter(ordSelect, connection);
+        ordAdapter.Fill(OrderSet, "Order");
+        DataTable? OrderTable = OrderSet.Tables["Order"];
+        if(OrderTable!= null)
+        {
+            foreach(DataRow row in OrderTable.Rows)
+            {
+                Order ord = new Order(row);
                 allOrders.Add(ord);
             }
         }
@@ -323,27 +324,4 @@ public class DBRepo : IRepo
         //no record was returned. No duplicate record in the db
         return acc;
     }
-
-    // public Store StoreOrders(Order order)
-    // {
-    //     string searchQuery = $"SELECT * FROM Orders WHERE StoreId='{order.StoreId}'";
-        
-    //     using SqlConnection connection = new SqlConnection(_connectionString);
-    //     using SqlCommand cmd = new SqlCommand(searchQuery, connection);
-
-    //     connection.Open();
-
-    //     using SqlDataReader reader = cmd.ExecuteReader();
-    //     //Customer acc = new Customer();
-
-    //     if(reader.Read())
-    //     {
-    //         acc.Id = reader.GetInt32(0);
-    //         acc.UserName = reader.GetString(1);
-    //         acc.Password = reader.GetString(2);
-    //     }
-    //     //no record was returned. No duplicate record in the db
-    //     return;
-    // }
-
 }

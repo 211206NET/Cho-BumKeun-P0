@@ -43,7 +43,6 @@ public class CustomerMenu : IMenu
             Console.WriteLine("[2] View all products");
             Console.WriteLine("[3] Place order");
             Console.WriteLine("[4] View your order history");
-            Console.WriteLine("[5] View storefront order history");
             Console.WriteLine("[6] View your order history");
             Console.WriteLine("[x] Logout to Main Menu");
 
@@ -60,9 +59,6 @@ public class CustomerMenu : IMenu
                 break;
                 case "4":
                     ViewAllCustomerOrders(existing);
-                break;
-                case "5":
-                    //ViewAllStorefrontOrders(existing, Store);
                 break;
                 case "6":
                     //MenuFactory.GetMenu("order").Start();
@@ -173,26 +169,4 @@ public class CustomerMenu : IMenu
             }
         }
     }
-
-    // private void ViewAllStorefrontOrders(Customer user, Store id)
-    // {
-    //     List<Store> allStores = _bl.GetAllStores();
-    //     Console.WriteLine("Here are all your storefront orders");
-    //     foreach(Store sto in allStores)
-    //     {
-    //         Console.WriteLine(sto.ToString());
-    //         if(sto.Orders != null && sto.Orders.Count > 0)
-    //         {
-    //             Console.WriteLine("======Orders======");
-    //             foreach(Order ord in sto.Orders)
-    //             {
-    //                 Console.WriteLine(ord.ToString());
-    //             }
-    //         }
-    //         else
-    //         {
-    //             Console.WriteLine("No orders made");
-    //         }
-    //     }
-    // }
 }

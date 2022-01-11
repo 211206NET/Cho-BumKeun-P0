@@ -29,6 +29,11 @@ public class StoreBL : IBL
         return _dl.GetAllOrders(Id);
     }
 
+    public List<Order> StoreOrders(int Id)
+    {
+        return _dl.StoreOrders(Id);
+    }
+
     /// <summary>
     /// Adds a new restaurant to the list
     /// </summary>

@@ -10,6 +10,8 @@ public interface IBL
 
     List<Order> GetAllOrders(int Id);
 
+    List<Order> StoreOrders(int storeId);
+
     void AddCustomer(Customer customerToAdd);
 
     void AddOrder(int storeId, int productId, string storeName, string productName,  int quantity, decimal price, int userId);
@@ -19,4 +21,6 @@ public interface IBL
     void ReplenishInventory();
 
     Customer Login(Customer existingCustomer);
+
+    
 }

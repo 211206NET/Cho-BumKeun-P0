@@ -1,10 +1,8 @@
 CREATE DATABASE StoreDB;
 
--- turning off super annoying feature ("Auto Close") that gets enabled by default
 ALTER DATABASE StoreDB
 SET AUTO_CLOSE OFF;
 
--- Changing to use RRDB db instead of master
 USE StoreDB;
 
 CREATE TABLE UserAccount(
@@ -17,8 +15,7 @@ CREATE TABLE Store(
     Id INT PRIMARY KEY IDENTITY(1, 1),
     Name NVARCHAR(450) NOT NULL UNIQUE,
     City NVARCHAR(100),
-    State NVARCHAR(50),
-    --Zip INT NOT NULL
+    State NVARCHAR(50)
 );
 
 CREATE TABLE Product(
