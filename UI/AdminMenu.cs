@@ -72,16 +72,68 @@ public class AdminMenu : IMenu
                     switch (Console.ReadLine())
                     {
                         case "1":
-                            //ViewAllCustomerOrdersDON(existing);
+                        List<Store> allStores1 = _bl.GetAllStores();
+                        Console.WriteLine("Select a store to see orders for");
+                        Console.WriteLine("==================================");
+                        for(int i = 0; i < allStores1.Count; i++)
+                        {
+                            Console.WriteLine($"[{i}] {allStores1[i].ToString()}");
+                        }
+                        string? input1 = Console.ReadLine();
+                        int selection1;
+                        bool parseSuccess1 = Int32.TryParse(input1, out selection1);
+                        if(parseSuccess1 && selection1 >= 0 && selection1 < allStores1.Count)
+                        {
+                            ViewAllStorefrontOrdersDON(selection1 + 1);
+                        }
                         break;
                         case "2":
-                            //ViewAllCustomerOrdersDNO(existing);
+                            List<Store> allStores2 = _bl.GetAllStores();
+                            Console.WriteLine("Select a store to see orders for");
+                            Console.WriteLine("==================================");
+                            for(int i = 0; i < allStores2.Count; i++)
+                            {
+                                Console.WriteLine($"[{i}] {allStores2[i].ToString()}");
+                            }
+                            string? input2 = Console.ReadLine();
+                            int selection2;
+                            bool parseSuccess2 = Int32.TryParse(input2, out selection2);
+                            if(parseSuccess2 && selection2 >= 0 && selection2 < allStores2.Count)
+                            {
+                                ViewAllStorefrontOrdersDNO(selection2 + 1);
+                            }
                         break;
                         case "3":
-                            //ViewAllCustomerOrdersPLH(existing);
+                            List<Store> allStores3 = _bl.GetAllStores();
+                            Console.WriteLine("Select a store to see orders for");
+                            Console.WriteLine("==================================");
+                            for(int i = 0; i < allStores3.Count; i++)
+                            {
+                                Console.WriteLine($"[{i}] {allStores3[i].ToString()}");
+                            }
+                            string? input3 = Console.ReadLine();
+                            int selection3;
+                            bool parseSuccess3 = Int32.TryParse(input3, out selection3);
+                            if(parseSuccess3 && selection3 >= 0 && selection3 < allStores3.Count)
+                            {
+                                ViewAllStorefrontOrdersPLH(selection3 + 1);
+                            }
                         break;
                         case "4":
-                            //ViewAllCustomerOrdersPHL(existing);
+                            List<Store> allStores4 = _bl.GetAllStores();
+                            Console.WriteLine("Select a store to see orders for");
+                            Console.WriteLine("==================================");
+                            for(int i = 0; i < allStores4.Count; i++)
+                            {
+                                Console.WriteLine($"[{i}] {allStores4[i].ToString()}");
+                            }
+                            string? input4 = Console.ReadLine();
+                            int selection4;
+                            bool parseSuccess4 = Int32.TryParse(input4, out selection4);
+                            if(parseSuccess4 && selection4 >= 0 && selection4 < allStores4.Count)
+                            {
+                                ViewAllStorefrontOrdersPHL(selection4 + 1);
+                            }
                         break;
                     }
                 break;
@@ -136,6 +188,78 @@ public class AdminMenu : IMenu
     private void ViewAllStorefrontOrders(int Id)
     {
         List<Order> allOrders = _bl.StoreOrders(Id);
+        if(allOrders.Count == 0)
+        {
+            Console.WriteLine("No order has been made for this storefront");
+        }
+        else
+        {
+            Console.WriteLine("Here are the orders for the selected storefront");
+            Console.WriteLine("==================================");
+            foreach(Order ord in allOrders)
+            {
+                Console.WriteLine(ord.ToString());
+            }
+        }
+    }
+
+    private void ViewAllStorefrontOrdersDON(int Id)
+    {
+        List<Order> allOrders = _bl.GetAllOrdersStoreDateON(Id);
+        if(allOrders.Count == 0)
+        {
+            Console.WriteLine("No order has been made for this storefront");
+        }
+        else
+        {
+            Console.WriteLine("Here are the orders for the selected storefront");
+            Console.WriteLine("==================================");
+            foreach(Order ord in allOrders)
+            {
+                Console.WriteLine(ord.ToString());
+            }
+        }
+    }
+
+    private void ViewAllStorefrontOrdersDNO(int Id)
+    {
+        List<Order> allOrders = _bl.GetAllOrdersStoreDateNO(Id);
+        if(allOrders.Count == 0)
+        {
+            Console.WriteLine("No order has been made for this storefront");
+        }
+        else
+        {
+            Console.WriteLine("Here are the orders for the selected storefront");
+            Console.WriteLine("==================================");
+            foreach(Order ord in allOrders)
+            {
+                Console.WriteLine(ord.ToString());
+            }
+        }
+    }
+
+    private void ViewAllStorefrontOrdersPLH(int Id)
+    {
+        List<Order> allOrders = _bl.GetAllOrdersStorePriceLH(Id);
+        if(allOrders.Count == 0)
+        {
+            Console.WriteLine("No order has been made for this storefront");
+        }
+        else
+        {
+            Console.WriteLine("Here are the orders for the selected storefront");
+            Console.WriteLine("==================================");
+            foreach(Order ord in allOrders)
+            {
+                Console.WriteLine(ord.ToString());
+            }
+        }
+    }
+
+    private void ViewAllStorefrontOrdersPHL(int Id)
+    {
+        List<Order> allOrders = _bl.GetAllOrdersStorePriceHL(Id);
         if(allOrders.Count == 0)
         {
             Console.WriteLine("No order has been made for this storefront");

@@ -18,6 +18,14 @@ public interface IRepo
 
     List<Order> StoreOrders(int Id);
 
+    List<Order> GetAllOrdersStoreDateON(int Id);
+
+    List<Order> GetAllOrdersStoreDateNO(int Id);
+
+    List<Order> GetAllOrdersStorePriceLH(int Id);
+
+    List<Order> GetAllOrdersStorePriceHL(int Id);
+
     void AddCustomer(Customer customerToAdd);
 
     void AddOrder(int storeId, int productId, string storeName, string productName, int quantity, decimal price, int userId, DateTime time);

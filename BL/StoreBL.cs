@@ -54,6 +54,26 @@ public class StoreBL : IBL
         return _dl.StoreOrders(Id);
     }
 
+    public List<Order> GetAllOrdersStoreDateON(int Id)
+    {
+        return _dl.GetAllOrdersStoreDateON(Id);
+    }
+
+    public List<Order> GetAllOrdersStoreDateNO(int Id)
+    {
+        return _dl.GetAllOrdersStoreDateNO(Id);
+    }
+
+    public List<Order> GetAllOrdersStorePriceLH(int Id)
+    {
+        return _dl.GetAllOrdersStorePriceLH(Id);
+    }
+
+    public List<Order> GetAllOrdersStorePriceHL(int Id)
+    {
+        return _dl.GetAllOrdersStorePriceHL(Id);
+    }
+
     /// <summary>
     /// Adds a new restaurant to the list
     /// </summary>

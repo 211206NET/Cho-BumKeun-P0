@@ -290,6 +290,87 @@ public class DBRepo : IRepo
         return allOrders;
     }
 
+    public List<Order> GetAllOrdersStoreDateON(int storeId)
+    {
+        List<Order> allOrders = new List<Order>();
+        using SqlConnection connection = new SqlConnection(_connectionString);
+        string ordSelect = $"SELECT * FROM Orders WHERE StoreId = {storeId} ORDER BY Time ASC";
+        DataSet OrderSet = new DataSet();
+        using SqlDataAdapter ordAdapter = new SqlDataAdapter(ordSelect, connection);
+        ordAdapter.Fill(OrderSet, "Order");
+        DataTable? OrderTable = OrderSet.Tables["Order"];
+        if(OrderTable!= null)
+        {
+            foreach(DataRow row in OrderTable.Rows)
+            {
+                Order ord = new Order(row);
+                allOrders.Add(ord);
+            }
+        }
+        return allOrders;
+    }
+
+    public List<Order> GetAllOrdersStoreDateNO(int storeId)
+    {
+        List<Order> allOrders = new List<Order>();
+        using SqlConnection connection = new SqlConnection(_connectionString);
+        string ordSelect = $"SELECT * FROM Orders WHERE StoreId = {storeId} ORDER BY Time DESC";
+        DataSet OrderSet = new DataSet();
+        using SqlDataAdapter ordAdapter = new SqlDataAdapter(ordSelect, connection);
+        ordAdapter.Fill(OrderSet, "Order");
+        DataTable? OrderTable = OrderSet.Tables["Order"];
+        if(OrderTable!= null)
+        {
+            foreach(DataRow row in OrderTable.Rows)
+            {
+                Order ord = new Order(row);
+                allOrders.Add(ord);
+            }
+        }
+        return allOrders;
+    }
+
+    public List<Order> GetAllOrdersStorePriceLH(int storeId)
+    {
+        List<Order> allOrders = new List<Order>();
+        using SqlConnection connection = new SqlConnection(_connectionString);
+        string ordSelect = $"SELECT * FROM Orders WHERE StoreId = {storeId} ORDER BY TotalPrice ASC";
+        DataSet OrderSet = new DataSet();
+        using SqlDataAdapter ordAdapter = new SqlDataAdapter(ordSelect, connection);
+        ordAdapter.Fill(OrderSet, "Order");
+        DataTable? OrderTable = OrderSet.Tables["Order"];
+        if(OrderTable!= null)
+        {
+            foreach(DataRow row in OrderTable.Rows)
+            {
+                Order ord = new Order(row);
+                allOrders.Add(ord);
+            }
+        }
+        return allOrders;
+    }
+
+    public List<Order> GetAllOrdersStorePriceHL(int storeId)
+    {
+        List<Order> allOrders = new List<Order>();
+        using SqlConnection connection = new SqlConnection(_connectionString);
+        string ordSelect = $"SELECT * FROM Orders WHERE StoreId = {storeId} ORDER BY TotalPrice DESC";
+        DataSet OrderSet = new DataSet();
+        using SqlDataAdapter ordAdapter = new SqlDataAdapter(ordSelect, connection);
+        ordAdapter.Fill(OrderSet, "Order");
+        DataTable? OrderTable = OrderSet.Tables["Order"];
+        if(OrderTable!= null)
+        {
+            foreach(DataRow row in OrderTable.Rows)
+            {
+                Order ord = new Order(row);
+                allOrders.Add(ord);
+            }
+        }
+        return allOrders;
+    }
+///////////////////////////////////////////////////////////////////
+
     /// <summary>
     /// Search for the Username for exact match of name
     /// </summary>
