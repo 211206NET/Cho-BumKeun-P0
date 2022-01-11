@@ -71,9 +71,9 @@ public class StoreBL : IBL
         return _dl.Login(checkCustomer);
     }
 
-    public void AddOrder(int storeId, int productId, string storeName, string productName, int quantity, decimal price, int userId)
+    public void AddOrder(int storeId, int productId, string storeName, string productName, int quantity, decimal price, int userId, DateTime time)
     {
-        _dl.AddOrder(storeId, productId, storeName, productName, quantity, price, userId);
+        _dl.AddOrder(storeId, productId, storeName, productName, quantity, price, userId, time);
     }
 
     public void UpdateInventory(int productId, int newQuantity)

@@ -12,7 +12,7 @@ public interface IRepo
 
     void AddCustomer(Customer customerToAdd);
 
-    void AddOrder(int storeId, int productId, string storeName, string productName, int quantity, decimal price, int userId);
+    void AddOrder(int storeId, int productId, string storeName, string productName, int quantity, decimal price, int userId, DateTime time);
 
     void UpdateInventory(int productId, int newQuantity);
 

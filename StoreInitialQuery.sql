@@ -34,7 +34,8 @@ CREATE TABLE Orders(
     ProductName NVARCHAR(450) FOREIGN KEY REFERENCES Product(Title),
     Quantity INT NOT NULL,
     TotalPrice DECIMAL NOT NULL,
-    UserId INT FOREIGN KEY REFERENCES UserAccount(Id) NOT NULL
+    UserId INT FOREIGN KEY REFERENCES UserAccount(Id) NOT NULL,
+    Time DATETIME NOT NULL
 );
 
 DROP TABLE UserAccount;
@@ -53,15 +54,6 @@ INSERT INTO Product (Title, Price, Developer, Inventory) VALUES
 ('Monster Hunter Rise', 59.99, 'CAPCOM', 100),
 ('Raft', 19.99, 'Redbeet Interactive', 100),
 ('Stardew Valley', 14.99, 'ConcernedApe', 100);
-
--- Inserting data is part of DML sublanguage, and we use INSERT keyword
-INSERT INTO Restaurant (Name, City, State) VALUES
-('Salt and Straw', 'Portland', 'OR'),
-('Pita House', 'Battle Ground', 'WA'),
-('Del Taco', 'LA', 'CA');
-
-INSERT INTO Review (RestaurantId, Rating, Note) VALUES
-(1,5, 'AMAZING ICE CREAM');
 
 Select * FROM UserAccount;
 Select * FROM Product;

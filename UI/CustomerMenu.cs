@@ -140,7 +140,7 @@ public class CustomerMenu : IMenu
                 bool success = Int32.TryParse(Console.ReadLine(), out quantity);
                 try
                 {
-                    _bl.AddOrder(allStores[selection].Id, allProducts[selection2].Id, allStores[selection].Name, allProducts[selection2].Title, quantity, allProducts[selection2].Price, userId);
+                    _bl.AddOrder(allStores[selection].Id, allProducts[selection2].Id, allStores[selection].Name, allProducts[selection2].Title, quantity, allProducts[selection2].Price, userId, DateTime.Now);
                     _bl.UpdateInventory(allProducts[selection2].Id, allProducts[selection2].Inventory-quantity);
                     Console.WriteLine("Would you like to purchase more games? [y/n]:");
                     string? yn = Console.ReadLine();

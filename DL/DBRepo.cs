@@ -1,5 +1,6 @@
 using Microsoft.Data.SqlClient;
 using System.Data;
+using System.Data.SqlTypes;
 //using System.Linq;
 namespace DL;
 
@@ -39,13 +40,13 @@ public class DBRepo : IRepo
         }
     }
 
-    public void AddOrder(int storeId, int productId, string storeName, string productName, int quantity, decimal price, int userId)
+    public void AddOrder(int storeId, int productId, string storeName, string productName, int quantity, decimal price, int userId, DateTime time)
     {
         using(SqlConnection connection = new SqlConnection(_connectionString))
         {
             connection.Open();
-            string sqlCmd = "INSERT INTO Orders (StoreId, StoreName, ProductId, ProductName, Quantity, TotalPrice, UserId) VALUES (@stoId, @stoname, @prodId, @prodname, @quantity, @totalprice, @userId)";
-
+            string sqlCmd = "INSERT INTO Orders (StoreId, StoreName, ProductId, ProductName, Quantity, TotalPrice, UserId, Time) VALUES (@stoId, @stoname, @prodId, @prodname, @quantity, @totalprice, @userId, @time)";
+    
             using(SqlCommand cmd = new SqlCommand(sqlCmd, connection))
             {
                 SqlParameter param = new SqlParameter("@stoId", storeId);
@@ -66,7 +67,10 @@ public class DBRepo : IRepo
                 param = new SqlParameter("@totalprice", price*quantity);
                 cmd.Parameters.Add(param);
 
-                param = new SqlParameter("userId", userId);
+                param = new SqlParameter("@userId", userId);
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@time", DateTime.Now);
                 cmd.Parameters.Add(param);
 
                 cmd.ExecuteNonQuery();
