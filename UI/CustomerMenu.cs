@@ -158,25 +158,39 @@ public class CustomerMenu : IMenu
                 Console.WriteLine("Order quantity (max 10): ");
                 int quantity;
                 bool success = Int32.TryParse(Console.ReadLine(), out quantity);
-                try
+                if (quantity > 0 && quantity <= 10)
                 {
-                    _bl.AddOrder(allStores[selection].Id, allProducts[selection2].Id, allStores[selection].Name, allProducts[selection2].Title, quantity, allProducts[selection2].Price, userId, DateTime.Now);
-                    _bl.UpdateInventory(allProducts[selection2].Id, allProducts[selection2].Inventory-quantity);
-                    Console.WriteLine("Would you like to purchase more games? [y/n]:");
-                    string? yn = Console.ReadLine();
-                    if(yn == "y")
+                    if(allProducts[selection2].Inventory >= quantity)
                     {
-                        goto addProduct;
+                        try
+                        {
+                            _bl.AddOrder(allStores[selection].Id, allProducts[selection2].Id, allStores[selection].Name, allProducts[selection2].Title, quantity, allProducts[selection2].Price, userId, DateTime.Now);
+                            _bl.UpdateInventory(allProducts[selection2].Id, allProducts[selection2].Inventory-quantity);
+                            Console.WriteLine("Would you like to purchase more games? [y/n]:");
+                            string? yn = Console.ReadLine();
+                            if(yn == "y")
+                            {
+                                goto addProduct;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Your order has been received!");
+                            }
+                        }
+                        catch(InputInvalidException ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                            goto createOrder;
+                        }
                     }
                     else
                     {
-                        Console.WriteLine("Your order has been received!");
+                        Console.WriteLine("Not enough inventory stock of your selected product");
                     }
                 }
-                catch(InputInvalidException ex)
+                else
                 {
-                    Console.WriteLine(ex.Message);
-                    goto createOrder;
+                    Console.WriteLine("Please input quantity value between 1 to 10");
                 }
             }
         }
