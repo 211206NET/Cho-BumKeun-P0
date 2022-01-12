@@ -1,6 +1,6 @@
 using DL;
-
 namespace UI;
+
 public static class MenuFactory
 {
     public static IMenu GetMenu(string menuString)
@@ -17,8 +17,6 @@ public static class MenuFactory
                 return new CustomerMenu(bl);
             case "admin":
                 return new AdminMenu(bl);
-            //case "order":
-                //return new OrderMenu(bl);
             default:
                 return new MainMenu(bl);
         }

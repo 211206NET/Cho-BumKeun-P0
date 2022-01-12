@@ -15,10 +15,6 @@ public class Store {
         this._name = name;
     }
 
-    /// <summary>
-    /// Converting Restaurant table's data row into Restaurant Object
-    /// </summary>
-    /// <param name="row">a data row from Restaurant object, must have id, name, city, state columns</param>
     public Store(DataRow row)
     {
         this.Id = (int) row["Id"];
@@ -59,10 +55,6 @@ public class Store {
         return $"Id: {this.Id} \nName: {this.Name} \nCity: {this.City} \nState: {this.State} \n==================================";
     }
 
-    /// <summary>
-    /// Takes in Restaurant Table's DataRow and fills the columns with the Restaurant Instance's info
-    /// </summary>
-    /// <param name="row">Restaurant Table's DataRow pass by ref</param>
     public void ToDataRow(ref DataRow row)
     {
         row["Name"] = this.Name;

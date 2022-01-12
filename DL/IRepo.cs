@@ -36,7 +36,5 @@ public interface IRepo
 
     Customer Login(Customer existingCustomer);
 
-    List<Customer> SearchCustomers(string searchTerm);
-
     bool IsDuplicate(Customer customer);
 }

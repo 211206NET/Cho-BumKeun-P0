@@ -2,8 +2,6 @@ namespace BL;
 
 public interface IBL
 {
-    List<Customer> SearchCustomers(string searchString);
-
     List<Store> GetAllStores();
 
     List<Product> GetAllProducts();

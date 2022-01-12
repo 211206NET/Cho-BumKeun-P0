@@ -62,9 +62,9 @@ public class Customer {
     }
 
     /// <summary>
-    /// Takes in Restaurant Table's DataRow and fills the columns with the Restaurant Instance's info
+    /// Takes in UserAccount Table's DataRow and fills the columns with the Customer Instance's info
     /// </summary>
-    /// <param name="row">Restaurant Table's DataRow pass by ref</param>
+    /// <param name="row">UserAccount Table's DataRow pass by ref</param>
     public void ToDataRow(ref DataRow row)
     {
         row["Username"] = this.UserName;

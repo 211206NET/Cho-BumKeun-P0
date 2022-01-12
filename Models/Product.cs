@@ -15,10 +15,6 @@ public class Product {
         this._name = name;
     }
 
-    /// <summary>
-    /// Converting Restaurant table's data row into Restaurant Object
-    /// </summary>
-    /// <param name="row">a data row from Restaurant object, must have id, name, city, state columns</param>
     public Product(DataRow row)
     {
         this.Id = (int) row["Id"];
@@ -61,10 +57,6 @@ public class Product {
         return $"Id: {this.Id} \nTitle: {this.Title} \nDeveloper: {this.Developer} \nPrice: {this.Price} \nInventory: {this.Inventory} \n==================================";
     }
 
-    /// <summary>
-    /// Takes in Restaurant Table's DataRow and fills the columns with the Restaurant Instance's info
-    /// </summary>
-    /// <param name="row">Restaurant Table's DataRow pass by ref</param>
     public void ToDataRow(ref DataRow row)
     {
         row["Title"] = this.Title;
