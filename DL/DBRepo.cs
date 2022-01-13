@@ -2,6 +2,7 @@ using Microsoft.Data.SqlClient;
 using System.Data;
 using System.Data.SqlTypes;
 using System.Linq;
+using Serilog;
 namespace DL;
 
 public class DBRepo : IRepo
@@ -38,6 +39,8 @@ public class DBRepo : IRepo
                 dataAdapter.InsertCommand = cmdBuilder.GetInsertCommand();
   
                 dataAdapter.Update(restoTable);
+
+                Log.Information("Customer added Username: {Username} Password: {Password}", customerToAdd.UserName, customerToAdd.Password);
             }
         }
     }
@@ -86,6 +89,8 @@ public class DBRepo : IRepo
                 cmd.Parameters.Add(param);
 
                 cmd.ExecuteNonQuery();
+
+                Log.Information("Customer ordered StoreID: {StoreId}  StoreName: {StoreName} ProductID: {ProductId} ProductName: {ProductName} Quantity: {Quantity} Price: {TotalPrice} UserID: {UserId} Time: {Time}", storeId, storeName, productId, productName, quantity, price, userId, time);
             }
             connection.Close();
         }
@@ -109,6 +114,8 @@ public class DBRepo : IRepo
                 param = new SqlParameter("@Id", productId);
                 cmd.Parameters.Add(param);
                 cmd.ExecuteNonQuery();
+
+                Log.Information("Inventory has been updated ProductID: {ProductId} NewQuantity: {Quantity}", productId, newQuantity);
             }
             connection.Close();
         }
@@ -126,6 +133,8 @@ public class DBRepo : IRepo
             SqlCommand cmd = new SqlCommand(sqlCmd, connection);
             cmd.ExecuteNonQuery();
             connection.Close();
+
+            Log.Information("Inventory has been replenished to 100");
         }
     }
 
@@ -465,6 +474,7 @@ public class DBRepo : IRepo
             acc.UserName = reader.GetString(1);
             acc.Password = reader.GetString(2);
         }
+        Log.Information("Customer has logged in Username: {Username} Password: {Password}", customer.UserName, customer.Password);
         return acc;
     }
 }

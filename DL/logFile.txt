@@ -1,0 +1,9 @@
+2022-01-13 13:56:04.711 -08:00 [INF] Customer added logtestinglogtestpass
+2022-01-13 14:09:20.775 -08:00 [INF] Customer added Username: loggingtest2 Password: loggingtest2
+2022-01-13 14:51:10.274 -08:00 [INF] Customer ordered StoreID: 4  StoreName: Market Square Vapor ProductID: 1 ProductName: Halo Infinite Quantity: 2 Price: 60 UserID: "2022-01-13T14:51:10.2662321-08:00" Time: {Time}
+2022-01-13 14:52:20.520 -08:00 [INF] Customer ordered StoreID: 4  StoreName: Market Square Vapor ProductID: 2 ProductName: Monster Hunter Rise Quantity: 3 Price: 60 UserID: "2022-01-13T14:52:20.3758898-08:00" Time: {Time}
+2022-01-13 14:53:51.897 -08:00 [INF] Customer ordered StoreID: 1  StoreName: Shelby Creek Vapor ProductID: 4 ProductName: Stardew Valley Quantity: 1 Price: 15 UserID: 1 Time: "2022-01-13T14:53:51.7541401-08:00"
+2022-01-13 14:57:12.800 -08:00 [INF] Customer ordered StoreID: 3  StoreName: Bedford Grove Vapor ProductID: 3 ProductName: Raft Quantity: 1 Price: 20 UserID: 1 Time: "2022-01-13T14:57:12.6520442-08:00"
+2022-01-13 14:57:12.987 -08:00 [INF] Inventory has been updated ProductID: 3 NewQuantity: 99
+2022-01-13 14:58:24.482 -08:00 [INF] Inventory has been replenished to 100
+2022-01-13 15:01:48.022 -08:00 [INF] Customer has logged in Username: testname Password: testpass
